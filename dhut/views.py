@@ -1,19 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Greeting
+from .models import Measurement
 
-# Create your views here.
+# List of all measurements as index page
 def index(request):
-    # return HttpResponse('Hello from Python!')
-    return render(request, "index.html")
+    measurements = Measurement.objects.all()
+    return render(request, "db.html", {"measurements": measurements})
 
+# Add a measurement
+def add(request, when, temp, rh):
+    measurement = Measurement()
+    measurement.when = when
+    measurement.temp = temp
+    measurement.rh = rh
+    measurement.save
 
-def db(request):
-
-    greeting = Greeting()
-    greeting.save()
-
-    greetings = Greeting.objects.all()
-
-    return render(request, "db.html", {"greetings": greetings})
+    return render(request, "db.html", {"measurements": measurements})

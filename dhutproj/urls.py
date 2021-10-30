@@ -16,6 +16,6 @@ import dhut.views
 
 urlpatterns = [
     path("", dhut.views.index, name="index"),
-    path("db/", dhut.views.db, name="db"),
+    path("add/", dhut.views.add, name="add"),
     path("admin/", admin.site.urls),
 ]
