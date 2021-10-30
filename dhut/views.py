@@ -16,5 +16,4 @@ def add(request):
     measurement.rh   = request.GET['rh']
     measurement.save()
 
-    measurements = Measurement.objects.all()
-    return render(request, "db.html", {"measurements": measurements})
+    return HttpResponse('')
