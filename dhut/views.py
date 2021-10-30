@@ -9,11 +9,12 @@ def index(request):
     return render(request, "db.html", {"measurements": measurements})
 
 # Add a measurement
-def add(request, when, temp, rh):
+def add(request):
     measurement = Measurement()
-    measurement.when = when
-    measurement.temp = temp
-    measurement.rh = rh
-    measurement.save
+    measurement.when = request.GET['when']
+    measurement.temp = request.GET['temp']
+    measurement.rh   = request.GET['rh']
+    measurement.save()
 
+    measurements = Measurement.objects.all()
     return render(request, "db.html", {"measurements": measurements})

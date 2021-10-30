@@ -9,16 +9,16 @@
 
 <table>
   <tr>
-    <th></th>
     <th>Date and time</th>
     <th>T [°C]</th>
     <th>% RH</th>
   </tr>
-  <tr>
 {% for measurement in measurements %}
+  <tr>
     <td>{{ measurement.when }}</td>
     <td>{{ measurement.temp }}</td>
     <td>{{ measurement.rh   }}</td>
+  </tr>
 {% endfor %}
 
 </table>
