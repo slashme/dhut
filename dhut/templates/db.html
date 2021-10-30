@@ -7,7 +7,7 @@
 
 <h2>Temperature and humidity report</h2>
 
-<table>
+<table class="table">
   <tr>
     <th>Date and time</th>
     <th>T [°C]</th>
@@ -15,7 +15,7 @@
   </tr>
 {% for measurement in measurements %}
   <tr>
-    <td>{{ measurement.when }}</td>
+    <td>{{ measurement.when|date:"Y-m-d " }} {{ measurement.when|time:"G:i:s" }}</td>
     <td>{{ measurement.temp }}</td>
     <td>{{ measurement.rh   }}</td>
   </tr>
