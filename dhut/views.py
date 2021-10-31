@@ -6,7 +6,7 @@ from .models import Measurement
 
 # List of all measurements as index page
 def index(request):
-    measurements = Measurement.objects.all()
+    measurements = Measurement.objects.all().order_by('-when')[:200]
     return render(request, "db.html", {"measurements": measurements})
 
 # Add a measurement
@@ -23,7 +23,7 @@ def line_chart(request):
     temps = []
     rhs   = []
 
-    queryset = Measurement.objects.all().order_by('-id')[:2000]
+    queryset = Measurement.objects.all().order_by('-when')[:2000]
     for measurement in queryset:
         temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
         rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
