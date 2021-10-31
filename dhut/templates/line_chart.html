@@ -5,8 +5,9 @@
     <canvas id="Scatterplot"></canvas>
   </div>
 
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/luxon@^2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@^1"></script>
   <script>
 
     var config = {
@@ -15,13 +16,15 @@
         datasets: [{
           label:   'Temperature',
           yAxisID: 'Temperature',
+	  xAxisID: 'Time',
           borderColor: 'rgb(255, 99, 132)',
-          data: {{ temps|safe }},
+          data: {{ temps|safe }}
         }, {
           label:   'Humidity',
           yAxisID: 'Humidity',
+	  xAxisID: 'Time',
           borderColor: 'rgb(99, 255, 132)',
-          data: {{ rhs|safe }},
+          data: {{ rhs|safe }}
         }],
       },
       options: {
@@ -33,6 +36,10 @@
 	      'Temperature': {
 		type: 'linear',
 		position: 'right',
+	      },
+	      'Time': {
+		      type: 'time',
+		      position: 'bottom',
 	      }
 	},
 	responsive: true,

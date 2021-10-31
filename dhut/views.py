@@ -24,10 +24,9 @@ def line_chart(request):
     rhs   = []
 
     queryset = Measurement.objects.all().order_by('-id')[:2000]
-    epoch=datetime.datetime(2021,10,30)
     for measurement in queryset:
-        temps.append({'x': (measurement.when.replace(tzinfo=None) - epoch).total_seconds(), 'y': measurement.temp})
-        rhs.append({'x': (measurement.when.replace(tzinfo=None) - epoch).total_seconds(), 'y': measurement.rh})
+        temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
+        rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
 
     return render(request, 'line_chart.html', {
         'temps': temps,
