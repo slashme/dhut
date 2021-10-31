@@ -17,17 +17,25 @@
           label:   'Temperature',
           yAxisID: 'Temperature',
 	  xAxisID: 'Time',
+	  pointStyle: 'line',
           borderColor: 'rgb(255, 128, 128)',
           data: {{ temps|safe }}
         }, {
           label:   'Humidity',
           yAxisID: 'Humidity',
 	  xAxisID: 'Time',
+	  pointStyle: 'line',
           borderColor: 'rgb(128, 255, 128)',
           data: {{ rhs|safe }}
         }],
       },
       options: {
+	plugins: {
+		legend: {
+			display: true,
+			labels: { usePointStyle: true }
+		},
+	},
 	scales: {
 	      'Humidity': {
 		type: 'linear',
