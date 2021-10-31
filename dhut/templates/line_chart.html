@@ -13,16 +13,28 @@
       type: 'scatter',
       data: {
         datasets: [{
-          label: 'Temperature',
+          label:   'Temperature',
+          yAxisID: 'Temperature',
           borderColor: 'rgb(255, 99, 132)',
           data: {{ temps|safe }},
         }, {
-          label: 'Humidity',
+          label:   'Humidity',
+          yAxisID: 'Humidity',
           borderColor: 'rgb(99, 255, 132)',
           data: {{ rhs|safe }},
         }],
       },
       options: {
+	scales: {
+	      'Humidity': {
+		type: 'linear',
+		position: 'left',
+	      },
+	      'Temperature': {
+		type: 'linear',
+		position: 'right',
+	      }
+	},
 	responsive: true,
 	showLine: true,
 	pointRadius: 0
