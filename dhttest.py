@@ -16,7 +16,7 @@ def read_temp_raw():
 
 def read_temp():
     lines = read_temp_raw()
-    while lines[0].strip()[-3:] != 'YES':
+    while len(lines) < 2 or lines[0].strip()[-3:] != 'YES':
         time.sleep(0.2)
         lines = read_temp_raw()
     equals_pos = lines[1].find('t=')
@@ -33,7 +33,10 @@ while True:
     temperature = read_temp()
     if humidity is not None and temperature is not None:
         a=datetime.datetime.now()
-        blah=urllib.request.urlopen('https://dhut.herokuapp.com/add?when={}-{}-{}%20{}%3a{}%3a{}.{}&temp={}&rh={}'.format(a.year, a.month, a.day, a.hour, a.minute, a.second, a.microsecond, temperature, humidity))
+        try:
+            blah=urllib.request.urlopen('https://dhut.herokuapp.com/add?when={}-{}-{}%20{}%3a{}%3a{}.{}&temp={}&rh={}'.format(a.year, a.month, a.day, a.hour, a.minute, a.second, a.microsecond, temperature, humidity))
+        except urllib.error.URLError as error:
+            print("Error in connection: ", error)
         #print('http://localhost:5000/add?when={}-{}-{}%20{}%3a{}%3a{}.{}&temp={}&rh={}'.format(a.year, a.month, a.day, a.hour, a.minute, a.second, a.microsecond, temperature, humidity))
         print(temperature,humidity)
     else:
