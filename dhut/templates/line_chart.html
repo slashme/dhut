@@ -17,13 +17,13 @@
           label:   'Temperature',
           yAxisID: 'Temperature',
 	  xAxisID: 'Time',
-          borderColor: 'rgb(255, 99, 132)',
+          borderColor: 'rgb(255, 128, 128)',
           data: {{ temps|safe }}
         }, {
           label:   'Humidity',
           yAxisID: 'Humidity',
 	  xAxisID: 'Time',
-          borderColor: 'rgb(99, 255, 132)',
+          borderColor: 'rgb(128, 255, 128)',
           data: {{ rhs|safe }}
         }],
       },
@@ -32,10 +32,16 @@
 	      'Humidity': {
 		type: 'linear',
 		position: 'left',
+		min: 30,
+		max: 70,
+		ticks: { stepSize: 10 }
 	      },
 	      'Temperature': {
 		type: 'linear',
 		position: 'right',
+		min: 10,
+		max: 30,
+		ticks: { stepSize: 5 }
 	      },
 	      'Time': {
 		      type: 'time',
