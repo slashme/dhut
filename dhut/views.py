@@ -5,7 +5,7 @@ from .models import Measurement
 
 # List of all measurements as index page
 def index(request):
-    measurements = Measurement.objects.all()
+    measurements = Measurement.objects.all().order_by('-id')[:200]
     return render(request, "db.html", {"measurements": measurements})
 
 # Add a measurement
