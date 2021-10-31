@@ -42,18 +42,25 @@
 		position: 'left',
 		min: 30,
 		max: 70,
-		ticks: { stepSize: 10 }
+		ticks: { stepSize: 10 },
+		title: { display: true, text: "Relative humidity [%]" }
 	      },
 	      'Temperature': {
 		type: 'linear',
 		position: 'right',
 		min: 10,
 		max: 30,
-		ticks: { stepSize: 5 }
+		ticks: { stepSize: 5 },
+		title: { display: true, text: "Temperature [°C]" }
 	      },
 	      'Time': {
-		      type: 'time',
-		      position: 'bottom',
+		type: 'time',
+		position: 'bottom',
+		time: {
+			unit:'hour',
+			stepSize:0.5,
+			displayFormats: {'hour': 'HH:mm'}
+		},
 	      }
 	},
 	responsive: true,
