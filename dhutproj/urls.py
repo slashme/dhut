@@ -1,21 +1,17 @@
 from django.urls import path, include
 
 from django.contrib import admin
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
 
 admin.autodiscover()
 
 import dhut.views
 
-# To add a new path, first import the app:
-# import blog
-#
-# Then add the new path:
-# path('blog/', blog.urls, name="blog")
-#
-# Learn more here: https://docs.djangoproject.com/en/2.1/topics/http/urls/
-
 urlpatterns = [
     path("", dhut.views.index, name="index"),
     path("add/", dhut.views.add, name="add"),
+    path("line_chart/", dhut.views.line_chart, name="line-chart"),
     path("admin/", admin.site.urls),
+    path("favicon.ico", RedirectView.as_view(url=staticfiles_storage.url("favicon.ico"))),
 ]

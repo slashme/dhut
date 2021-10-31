@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div id="container" style="width: 75%;">
+    <canvas id="Scatterplot"></canvas>
+  </div>
+
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+  <script>
+
+    var config = {
+      type: 'scatter',
+      data: {
+        datasets: [{
+          label: 'Temperature',
+          borderColor: 'rgb(255, 99, 132)',
+          data: {{ temps|safe }},
+        }, {
+          label: 'Humidity',
+          borderColor: 'rgb(99, 255, 132)',
+          data: {{ rhs|safe }},
+        }],
+      },
+      options: {
+        responsive: true
+      }
+    };
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+
+  </script>
+
+{% endblock %}

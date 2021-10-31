@@ -17,3 +17,17 @@ def add(request):
     measurement.save()
 
     return HttpResponse('')
+
+def line_chart(request):
+    temps = []
+    rhs   = []
+
+    queryset = Measurement.objects.all().order_by('-id')[:2000]
+    for measurement in queryset:
+        temps.append({'x': measurement.when.replace(tzinfo=None), 'y': measurement.temp})
+        rhs.append({'x': measurement.when.replace(tzinfo=None), 'y': measurement.rh})
+
+    return render(request, 'line_chart.html', {
+        'temps': temps,
+        'rhs'  : rhs,
+    })
