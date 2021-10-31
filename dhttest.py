@@ -1,6 +1,7 @@
 import Adafruit_DHT
 import time
 import datetime
+import pytz
 import urllib.request
 import glob
  
@@ -32,9 +33,9 @@ while True:
     humidity, temperature = Adafruit_DHT.read_retry(DHT_SENSOR, DHT_PIN)
     temperature = read_temp()
     if humidity is not None and temperature is not None:
-        a=datetime.datetime.now()
+        a=datetime.datetime.now().astimezone(pytz.utc)
         try:
-            blah=urllib.request.urlopen('https://dhut.herokuapp.com/add?when={}-{}-{}%20{}%3a{}%3a{}.{}&temp={}&rh={}'.format(a.year, a.month, a.day, a.hour, a.minute, a.second, a.microsecond, temperature, humidity))
+            blah=urllib.request.urlopen('https://dhut.herokuapp.com/add?when={}-{}-{}%20{}%3a{}%3a{}.{}%2B00:00&temp={}&rh={}'.format(a.year, a.month, a.day, a.hour, a.minute, a.second, a.microsecond, temperature, humidity))
         except urllib.error.URLError as error:
             print("Error in connection: ", error)
         #print('http://localhost:5000/add?when={}-{}-{}%20{}%3a{}%3a{}.{}&temp={}&rh={}'.format(a.year, a.month, a.day, a.hour, a.minute, a.second, a.microsecond, temperature, humidity))
