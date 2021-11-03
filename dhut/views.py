@@ -4,8 +4,25 @@ import datetime
 
 from .models import Measurement
 
-# List of all measurements as index page
+
+# Landing page
 def index(request):
+    temps = []
+    rhs   = []
+
+    queryset = Measurement.objects.all().order_by('-when')[:2000]
+    for measurement in queryset:
+        temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
+        rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
+
+    measurements = Measurement.objects.all().order_by('-when')[:20]
+    return render(request, 'index.html', {
+        'temps'       : temps,
+        'rhs'         : rhs,
+        "measurements": measurements})
+
+# List of all measurements as index page
+def db(request):
     measurements = Measurement.objects.all().order_by('-when')[:200]
     return render(request, "db.html", {"measurements": measurements})
 
