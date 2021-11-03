@@ -10,7 +10,7 @@ def index(request):
     temps = []
     rhs   = []
 
-    queryset = Measurement.objects.all().order_by('-when')[:2000]
+    queryset = Measurement.objects.filter(when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1))).order_by('when')
     for measurement in queryset:
         temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
         rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
@@ -40,7 +40,7 @@ def line_chart(request):
     temps = []
     rhs   = []
 
-    queryset = Measurement.objects.filter(when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1))).order_by('when')
+    queryset = Measurement.objects.filter(when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3))).order_by('when')
     for measurement in queryset:
         temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
         rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
