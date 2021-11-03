@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load tz %}
 
 {% block content %}
   <div class="container">
@@ -15,7 +16,9 @@
   </tr>
 {% for measurement in measurements %}
   <tr>
-    <td>{{ measurement.when|date:"Y-m-d " }} {{ measurement.when|time:"G:i:s" }}</td>
+    {% timezone "Europe/Berlin" %}
+    <td>{{ measurement.when|date:"Y-m-d " }} {{ measurement.when|time:"H:i:s T" }}</td>
+    {% endtimezone %}
     <td>{{ measurement.temp }}</td>
     <td>{{ measurement.rh   }}</td>
   </tr>
