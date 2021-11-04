@@ -5,4 +5,4 @@ class Measurement(models.Model):
     when   = models.DateTimeField("date created")
     temp   = models.FloatField("Temperature in Celsius")
     rh     = models.FloatField("Relative humidity in %")
-    sensor = models.IntegerField("Identification of sensor")
+    sensor = models.IntegerField("Identification of sensor", default=0)
