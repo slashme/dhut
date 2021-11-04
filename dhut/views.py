@@ -29,9 +29,10 @@ def db(request):
 # Add a measurement
 def add(request):
     measurement = Measurement()
-    measurement.when = request.GET['when']
-    measurement.temp = request.GET['temp']
-    measurement.rh   = request.GET['rh']
+    measurement.when   = request.GET['when']
+    measurement.temp   = request.GET['temp']
+    measurement.rh     = request.GET['rh']
+    measurement.sensor = request.GET['sensor']
     measurement.save()
 
     return HttpResponse('')

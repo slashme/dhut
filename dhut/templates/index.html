@@ -26,8 +26,8 @@
       {% timezone "Europe/Berlin" %}
       <td>{{ measurement.when|date:"Y-m-d " }} {{ measurement.when|time:"H:i:s T" }}</td>
       {% endtimezone %}
-      <td>{{ measurement.temp }}</td>
-      <td>{{ measurement.rh   }}</td>
+      <td>{{ measurement.temp|floatformat:2 }}</td>
+      <td>{{   measurement.rh|floatformat:2 }}</td>
     </tr>
   {% endfor %}
 
