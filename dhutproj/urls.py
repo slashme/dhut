@@ -12,6 +12,7 @@ urlpatterns = [
     path("", dhut.views.index, name="index"),
     path("add/", dhut.views.add, name="add"),
     path("index/", dhut.views.index, name="index"),
+    path("db_json/", dhut.views.db_json, name="db_json"),
     path("db/", dhut.views.db, name="db"),
     path("db1/", dhut.views.db1, name="db1"),
     path("db2/", dhut.views.db2, name="db2"),

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
+import json
 
 from .models import Measurement
 
@@ -30,6 +31,13 @@ def index(request):
         'temps'       : temps,
         'rhs'         : rhs,
         "measurements": measurements})
+
+# List of measurements as json
+def db_json(request):
+    measurements = Measurement.objects.order_by('when')
+    results = [ob.as_json() for ob in measurements]
+    return HttpResponse(json.dumps(results, indent=2, ensure_ascii=False, default=str), content_type="application/json")
+
 
 # List of measurements in table form
 def db(request):
