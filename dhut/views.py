@@ -20,7 +20,7 @@ def index(request):
     temps = []
     rhs   = []
 
-    queryset = Measurement.objects.filter(sensor=0,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1))).order_by('when')
+    queryset = Measurement.objects.filter(sensor=0,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(hours=3))).order_by('when')
     for measurement in queryset:
         temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
         rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
@@ -52,7 +52,7 @@ def line_chart(request):
     temps = []
     rhs   = []
 
-    queryset = Measurement.objects.filter(sensor=0,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3))).order_by('when')
+    queryset = Measurement.objects.filter(sensor=0,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1))).order_by('when')
     for measurement in queryset:
         temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
         rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
@@ -66,7 +66,7 @@ def line_chart1(request):
     temps = []
     rhs   = []
 
-    queryset = Measurement.objects.filter(sensor=1,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3))).order_by('when')
+    queryset = Measurement.objects.filter(sensor=1,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1))).order_by('when')
     for measurement in queryset:
         temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
         rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
@@ -80,7 +80,7 @@ def line_chart2(request):
     temps = []
     rhs   = []
 
-    queryset = Measurement.objects.filter(sensor=2,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3))).order_by('when')
+    queryset = Measurement.objects.filter(sensor=2,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1))).order_by('when')
     for measurement in queryset:
         temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
         rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
@@ -94,7 +94,7 @@ def line_chart3(request):
     temps = []
     rhs   = []
 
-    queryset = Measurement.objects.filter(sensor=3,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=3))).order_by('when')
+    queryset = Measurement.objects.filter(sensor=3,when__gte=(datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=1))).order_by('when')
     for measurement in queryset:
         temps.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.temp})
         rhs.append({'x': str(measurement.when).replace(" ","T"), 'y': measurement.rh})
