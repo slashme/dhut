@@ -1,0 +1,1 @@
+[{"model": "Adafruit_DHT.DHT22", "pin": 4, "sensor_id": 1}, {"model": "Adafruit_DHT.DHT11", "pin": 18, "sensor_id": 3}]
