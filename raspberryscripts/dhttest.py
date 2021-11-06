@@ -6,7 +6,7 @@ import pytz
 import json
 import urllib.request
  
-with open('sensorlist.json', 'r') as f:
+with open('/home/david/sensorlist.json', 'r') as f:
     sensorlist = json.load(f)
 
 while True:
