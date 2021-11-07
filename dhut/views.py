@@ -7,13 +7,14 @@ from .models import Measurement
 
 # Add a measurement
 def add(request):
+    if Measurement.objects.filter().count() > 7000:
+        Measurement.objects.order_by('id').first().delete()
     measurement = Measurement()
     measurement.when   = request.GET['when']
     measurement.temp   = request.GET['temp']
     measurement.rh     = request.GET['rh']
     measurement.sensor = request.GET['sensor']
     measurement.save()
-
     return HttpResponse('')
 
 # Landing page
