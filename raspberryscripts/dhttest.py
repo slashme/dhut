@@ -13,7 +13,7 @@ with open('/home/david/sensorlist.json', 'r') as f:
 def sensorloop(model, pin, sensor_id, delay):
     while True:
         humidity, temperature = Adafruit_DHT.read_retry(eval(model), pin)
-        if humidity is not None and temperature is not None:
+        if humidity is not None and temperature is not None and temperature > -25:
             a=datetime.datetime.now().astimezone(pytz.utc)
             try:
                 blah=urllib.request.urlopen('https://dhut.herokuapp.com/add?when={}-{}-{}%20{}%3a{}%3a{}.{}%2B00:00&temp={}&rh={}&sensor={}'.format(a.year, a.month, a.day, a.hour, a.minute, a.second, a.microsecond, temperature, humidity, sensor['sensor_id']))
