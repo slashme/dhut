@@ -14,7 +14,9 @@ def add(request):
     measurement.temp   = request.GET['temp']
     measurement.rh     = request.GET['rh']
     measurement.sensor = request.GET['sensor']
-    measurement.save()
+    measurement.secret = request.GET['secret']
+    if measurement.secret == "ChooseAPassword":
+        measurement.save()
     return HttpResponse('')
 
 # Landing page
