@@ -1,0 +1,11 @@
+[Unit]
+Description=Climate sensor
+After=multi-user.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/david/dhttest.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
