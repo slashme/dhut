@@ -1,6 +1,8 @@
 ## Humidity and temperature measurement
 
-Measuring humidity and temperature with a Raspberry Pi and logging the data on Heroku
+Measuring humidity and temperature with a Raspberry Pi and logging the data on Heroku.
+
+If you find this code or these instructions useful, let me know which parts need to be improved!
 
 ## Hardware setup
 
